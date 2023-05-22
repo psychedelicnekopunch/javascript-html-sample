@@ -1,0 +1,32 @@
+{
+  "name": "javascript-html-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "dev": "webpack --mode=development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/psychedelicnekopunch/javascript-html-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psychedelicnekopunch/javascript-html-sample/issues"
+  },
+  "homepage": "https://github.com/psychedelicnekopunch/javascript-html-sample#readme",
+  "dependencies": {
+    "clipboard-polyfill": "^4.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.4",
+    "mini-css-extract-plugin": "^2.7.6",
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  }
+}
