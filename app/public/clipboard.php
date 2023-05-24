@@ -16,7 +16,6 @@
 	<!-- <script src="/js/bundle.js?<?php echo time() ?>"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/4.0.0/es5/overwrite-globals/clipboard-polyfill.overwrite-globals.es5.js"></script>
 	<script type="text/javascript">
-		console.log(window.ClipboardItem)
 		// const clipboard = window.pn.clipboard
 		// console.log(clipboard)
 
