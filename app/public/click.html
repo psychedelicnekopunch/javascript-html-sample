@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width">
+	<title>click - js html sample</title>
+	<link rel="stylesheet" href="/css/bundle.css?<?php echo time() ?>">
+</head>
+
+<body>
+
+	<button type="button" onclick="btnClick()">button1</button>
+	<button id="btn2" type="button">button2</button>
+	<button id="btn3" type="button">button3</button>
+
+	<script type="text/javascript">
+
+		(function() {
+
+			let btn2 = document.getElementById('btn2')
+			if (!btn2) {
+				return
+			}
+			btn2.addEventListener('click', (e) => {
+				console.log(e)
+			})
+
+
+			let btn3 = document.getElementById('btn3')
+			if (!btn3) {
+				return
+			}
+			btn3.onclick = (e) => {
+				console.log(e)
+			}
+
+		}())
+
+		// onclick=="" は HTMLElement に登録されているメソッド名は使えない
+		//
+		// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement
+		//
+		// attachInternals()
+		// blur()
+		// click()
+		// focus()
+		// hidePopover()
+		// showPopover()
+		// togglePopover()
+		//
+		function btnClick() {
+			console.log('click')
+		}
+	</script>
+</body>
+</html>
