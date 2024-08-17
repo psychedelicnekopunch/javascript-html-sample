@@ -2,9 +2,7 @@
 version: "3"
 
 services:
-    app:
-        depends_on:
-            - php
+    javascript-html-sample-app:
         image: nginx:1
         volumes:
             - ./app:/var/www/html
@@ -13,7 +11,3 @@ services:
             - 8080:80
         tty: true
         working_dir: /var/www/html
-    php:
-        image: php:fpm
-        volumes:
-            - ./app:/var/www/html
