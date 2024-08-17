@@ -1,0 +1,99 @@
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width">
+	<title>scroll - js html sample</title>
+	<style rel="stylesheet">
+		body, html {
+			padding: 0;
+			margin: 0;
+			position: relative;
+		}
+		header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			background: rgba(255,255,255,0.5);
+			padding: 10px;
+			z-index: 10;
+		}
+		.ajustSize {
+			width: 3000px;
+			height: 3000px;
+		}
+		.ajustPadding {
+			padding: 100px;
+		}
+		.scroll {
+			position: relative;
+			width: 300px;
+			height: 300px;
+			overflow: scroll;
+			background: #eee;
+		}
+	</style>
+</head>
+
+<body>
+
+	<header id="scrollMonitor1">
+		window.scrollY: 0px, window.scrollX: 0px
+	</header>
+	<div class="ajustSize">
+		<div class="ajustPadding">
+			<div id="scroll" class="scroll">
+				<div class="ajustSize">
+					scroll in div
+				</div>
+			</div>
+			<div id="scrollMonitor2">
+				target.scrollTop: 0px, target.scrollLeft: 0px
+			</div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript">
+
+		(function() {
+
+			let scrollMonitor1 = document.getElementById('scrollMonitor1')
+			if (!scrollMonitor1) {
+				return
+			}
+			// スクロールのイベントは、
+			// ページ更新した際に、初期位置にいると発火しない。
+			// ページ更新した際に、スクロール位置が初期位置から少しでもずれた場所にあると発火する。
+			// 位置が変わる度にも発火する。初期位置に戻っても発火する。
+			window.addEventListener('scroll', (e) => {
+				// console.log(window)
+				// console.log(e)
+				scrollMonitor1.innerHTML = `window.scrollY: ${window.scrollY}px, window.scrollX: ${window.scrollX}px`
+				// if (window.scrollY == 0) {
+				// 	console.log(e)
+				// }
+			})
+
+
+			let scroll = document.getElementById('scroll')
+			let scrollMonitor2 = document.getElementById('scrollMonitor2')
+			if (!scroll || !scrollMonitor2) {
+				return
+			}
+			scroll.addEventListener('scroll', (e) => {
+				// console.log(e)
+				scrollMonitor2.innerHTML = `target.scrollTop: ${scroll.scrollTop}px, target.scrollLeft: ${scroll.scrollLeft}px`
+				// if (scroll.scrollTop == 0) {
+				// 	console.log(e)
+				// }
+			})
+
+		}())
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width">
+	<title>resize - js html sample</title>
+</head>
+
+<body>
+
+	<div id="resizeMonitor"></div>
+
+
+
+	<script type="text/javascript">
+
+		(function() {
+
+			let resizeMonitor = document.getElementById('resizeMonitor')
+			if (!resizeMonitor) {
+				return
+			}
+
+			window.addEventListener('resize', (e) => {
+				// console.log(window)
+				console.log(e)
+				draw()
+			})
+
+
+			function draw() {
+				resizeMonitor.innerHTML = `
+window.innerHeight: ${window.innerHeight}px - 表示されている画面の高さ<br>
+window.innerWidth: ${window.innerWidth}px - 表示されている画面の横幅<br>
+window.outerHeight: ${window.outerHeight}px - ブラウザウィンドウの外枠の高さ<br>
+window.outerWidth: ${window.outerWidth}px - ブラウザウィンドウの外枠の横幅<br>
+window.screenLeft: ${window.screenLeft}px - ブラウザウィンドウの左側の x 座標<br>
+window.screenTop: ${window.screenTop}px - ブラウザウィンドウの上側の y 座標<br>
+window.screenX: ${window.screenX}px - screenLeft と同じ値<br>
+window.screenY: ${window.screenY}px - screenTop と同じ値<br>
+`
+			}
+
+
+			draw()
+
+		}())
+
+	</script>
+</body>
+</html>
