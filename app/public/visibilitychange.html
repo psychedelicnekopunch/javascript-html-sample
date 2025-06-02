@@ -1,0 +1,118 @@
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width">
+	<title>visibilitychange - js html sample</title>
+</head>
+
+<body>
+	<div style="height: 1000px;">
+		<div style="height: 100px; overflow-y: scroll;" id="scroller">
+			<div style="height: 500px; background: #ccc;">
+				scroll
+			</div>
+		</div>
+	</div>
+	<button id="btn" onclick="btnClick()">test</button>
+	<div id="visibilitychange" style="background: #ccc;">visibilitychange</div>
+	<div style="height: 1000px;"></div>
+
+
+
+	<script type="text/javascript">
+
+		// (function() {
+			// 発火タイミング
+			//
+			// PC
+			// ・別コンテンツのフルスクリーンからの切り替え
+			// ・タブの切り替え
+			// ・PCログイン
+			// ・ブラウザの起動
+			//
+			// iPhone
+			// ・ホームボタンでの離脱
+			// ・電源ボタン
+			// ・タブの切り替え
+			// ・アプリケーションの切り替え
+			// ・ブラウザの起動。多分
+			//
+			document.addEventListener("visibilitychange", () => {
+				if (document.hidden) {
+					console.log('visibilitychange: hidden')
+				} else {
+					console.log('visibilitychange: show')
+				}
+			})
+
+			// オブジェクトが画面外に行った時に何かする。
+			//
+			//
+			const visibilitychange = document.getElementById('visibilitychange')
+			if (visibilitychange) {
+				// console.log(visibilitychange)
+				// これはイベント発火しない
+				//
+				visibilitychange.addEventListener('visibilitychange', () => {
+					if (visibilitychange.hidden) {
+						console.log('hidden div')
+					} else {
+						console.log('show div')
+					}
+				})
+				// オブジェクトが画面外に行った時に何かしたい時は、
+				// scroll イベントを使う。
+				//
+				let hidden = false
+				// console.log(document)
+				window.addEventListener("scroll", (e) => {
+					// console.log(window.scrollY)
+					// console.log(e)
+					// console.log(window)
+					// console.log(window.innerHeight)
+					// console.log(document.body.scrollTop)
+					// console.log(visibilitychange.offsetTop)
+					const targetBottom = visibilitychange.offsetTop + visibilitychange.offsetHeight
+					if (targetBottom < window.scrollY) {
+						if (hidden) {
+							return
+						}
+						hidden = true
+						console.log('hidden to top')
+					}
+					if (visibilitychange.offsetTop > window.innerHeight + window.scrollY) {
+						if (hidden) {
+							return
+						}
+						hidden = true
+						console.log('hidden to bottom')
+					}
+					if (window.scrollY < targetBottom && visibilitychange.offsetTop < window.innerHeight + window.scrollY) {
+						hidden = false
+						console.log('visible')
+					}
+				})
+			}
+
+			const btn = document.getElementById('btn')
+			if (btn && visibilitychange) {
+				function btnClick() {
+					console.log(visibilitychange.style['display'])
+					visibilitychange.style['display'] = (visibilitychange.style['display'] == 'none') ? 'block' : 'none'
+				}
+			}
+
+			const scroller = document.getElementById('scroller')
+			if (scroller) {
+				scroller.addEventListener('scroll', () => {
+					console.log('scroll')
+				})
+			}
+
+		// }())
+
+	</script>
+</body>
+</html>

@@ -1,6 +1,3 @@
-
-version: "3"
-
 services:
     javascript-html-sample-app:
         image: nginx:1
@@ -11,3 +8,20 @@ services:
             - 8080:80
         tty: true
         working_dir: /var/www/html
+        environment:
+            - VIRTUAL_HOST=test.psychedelicnekopunch.pn
+        networks:
+            - javascript-html-sample-network
+    javascript-html-sample--nginx-proxy:
+        image: jwilder/nginx-proxy
+        ports:
+            - 80:80
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        networks:
+            - javascript-html-sample-network
+
+
+networks:
+    javascript-html-sample-network:
+        name: javascript_html_sample_network
